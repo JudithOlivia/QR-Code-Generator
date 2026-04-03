@@ -1,6 +1,8 @@
 # QR Code Generator:
 QR code generator website that allows you to create customized QR codes with colors, logos, and emojis.
 
+Link: https://juditholivia.github.io/QR-Code-Generator/
+
 ## Features:
 
 - **Generate QR codes** from any text or URL
