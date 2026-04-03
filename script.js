@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const previewImg = document.getElementById('previewImg');
     const removeLogoBtn = document.getElementById('removeLogoBtn');
     const emojiInput = document.getElementById('emojiInput'); 
+    const downloadPNG = document.getElementById('download');
 
     if (typeof ORCode === 'undefined') {
         console.error('QRCode library not loaded');
@@ -200,6 +201,30 @@ document.addEventListener('DOMContentLoaded', function() {
             errorDiv.classList.add('show');
         }
     }
+
+    function downloadQR(format) {
+        if (!qrCanvas || !qrCanvas.toDataURL) {
+            console.error('No QR code to download');
+        }
+
+        try {
+            const link = document.createElement('a');
+            if (format === 'png') {
+                link.download = 'qrcode.png';
+                link.href = qrCanvas.toDataURL('image/png');
+            } else if (format === 'jpg') {
+                link.download = 'qrcode.jpg';
+                link.href = qrCanvas.toDataURL('image/jpeg, 0.9');
+            }
+            link.click();
+            console.log('Download as', format);
+        } catch (error) {
+            console.error('Error downloading:', error);
+        }
+    }
+
+    if (downloadPNG) downloadPNG.addEventListeners('click', () => downloadOR('png'));
+    if (downloadJPG) downloadJPG.addEventListeners('click', () => downloadOR('jpg'));
 
 });
 
