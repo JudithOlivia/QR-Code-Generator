@@ -29,6 +29,16 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label> Size </label>
+            <select id="qrSize">
+                <option value="256">Small (256x256)</option>
+                <option value="512" selected>Medium (512x512)</option>
+                <option value="1024">Large (1024x1024)</option>
+                <option value="2048">Extra Large (2048x2048)</option>
+            </select>
+        </div>
+
         <button id="generateBtn">Generate QR Code</button>
 
         <div id="qrContainer" style="display: none;">

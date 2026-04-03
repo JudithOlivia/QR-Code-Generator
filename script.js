@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = qrtext.value.trim();
         const qrColor = document.getElementById('qrColor').value;
         const bgColor = document.getElementById('bgColor').value;
+        const size = parseInt(document.getElementById('qrSize').value); 
 
         if (!text) {
-            console.log('No text entered');
             errorDiv.classList.add('show');
             return;
         }
