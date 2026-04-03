@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Generate button clicked');
 
         const text = qrtext.value.trim();
+        const qrColor = document.getElementById('qrColor').value;
+        const bgColor = document.getElementById('bgColor').value;
 
         if (!text) {
             console.log('No text entered');
@@ -30,12 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         errorDiv.classList.remove('show');
 
         try {
-            console.log('Generating QR for:', text);
+            console.log('Generating QR with colors:', qrColor, bgColor);
 
             qrCanvas.width = 512;
             qrCanvas.height = 512;
 
-            await generateQRCode.toCanvas(qrCanvas, text, { width: 512, margin: 2, errorCorrectionLevel: 'H'})
+            await generateQRCode.toCanvas(qrCanvas, text, { width: 512, margin: 2, color:{dark: qrColor, light:bgColor}, errorCorrectionLevel: 'H'})
 
             qrContainer.style.display = 'block';
             console.log('QR generated successfully');
