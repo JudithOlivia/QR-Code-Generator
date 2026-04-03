@@ -8,77 +8,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const qrCanvas = document.getElementById('qrCanvas');
     const errorDiv = document.getElementById('errorDiv');
     const logoUpload = document.getElementById('logoUpload');
-    const LogoFile = document.getElementById('LogoFile');
-    const logoPreview = document.getElementById('LogoPreview');
+    const logoFile = document.getElementById('logoFile');
+    const logoPreview = document.getElementById('logoPreview');
     const previewImg = document.getElementById('previewImg');
     const removeLogoBtn = document.getElementById('removeLogoBtn');
     const emojiInput = document.getElementById('emojiInput'); 
-    const downloadPNG = document.getElementById('download');
+    const downloadPNG = document.getElementById('downloadPNG');
+    const downloadJPG = document.getElementById('downloadJPG');
 
-    if (typeof ORCode === 'undefined') {
+    if (typeof QRCode === 'undefined') {
         console.error('QRCode library not loaded');
-        errorDiv.textContent = 'Error: QR library failed to load';
-        errorDiv.classList.add('show');
+        if (errorDiv) {
+            errorDiv.textContent = 'Error: QR library failed to load';
+            errorDiv.classList.add('show');
+        }
         return;
     }
 
     console.log('QRCode library loaded successfully');
 
-    async function generateQRCode() {
-        console.log('Generate button clicked');
-
-        const text = qrtext.value.trim();
-        const qrColor = document.getElementById('qrColor').value;
-        const bgColor = document.getElementById('bgColor').value;
-        const size = parseInt(document.getElementById('qrSize').value); 
-
-        if (!text) {
-            errorDiv.classList.add('show');
-            return;
-        }
-
-        errorDiv.classList.remove('show');
-
-        try {
-            console.log('Generating QR with colors:', qrColor, bgColor);
-
-            qrCanvas.width = 512;
-            qrCanvas.height = 512;
-
-            await generateQRCode.toCanvas(qrCanvas, text, { 
-                width: 512, 
-                margin: 2, 
-                color:{
-                    dark: qrColor, 
-                    light:bgColor
-                }, 
-                errorCorrectionLevel: 'H'
-            });
-
-            qrContainer.style.display = 'block';
-            console.log('QR generated successfully');
-
-        } catch (error) {
-            console.error('Error generating QR code:', error);
-            errorDiv.textContent = 'Error generating QR code';
-            errorDiv.classList.add('show');
-        }
-    }
-
-    generateBtn.addEventListener('click', generateQR);
+    generateBtn.addEventListener('click', generateQRCode);
 
     setTimeout(function(){
         if (qrtext.value ==='') {
             qrtext.value = 'https://example.com';
-            generateQR();
+            generateQRCode();
         }
     }, 100);
 
-    logoUploaf.addEventListener('click', () =>{
-        LogoFile.click();
+    logoUpload.addEventListener('click', () =>{
+        logoFile.click();
     })
 
-    LogoFile.addEventListener('change', function() {
+    logoFile.addEventListener('change', function(e) {
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
             reader.onload = (event) => {
@@ -101,13 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
         logoFile.value = '';
         previewImg.src = '';
         console.log('Logo removed');
-        generateQR();  
+        generateQRCode(); 
     });
 
     emojiInput.addEventListener('input', (e) =>{
         if (e.target.value) {
         console.log('Emoji entered:', e.target.value);
-        const canvas = this.documentElement.createElement('canvas');
+        const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = 100;
         canvas.height = 100;
@@ -119,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLogo = canvas.toDataURL();
         previewImg.src = currentLogo;
         logoPreview.style.display = 'flex';
-        generateQR();
+        generateQRCode();
         }
     });
 
@@ -154,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } 
 
-    async function generateQR() {
+    async function generateQRCode() {
         console.log('Generate button clicked');
 
         const text = qrtext.value.trim();
@@ -174,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             qrCanvas.width = size;
             qrCanvas.height = size;
 
-            await generateQRCode.toCanvas(qrCanvas, text, {
+            await QRCode.toCanvas(qrCanvas, text, {
                 width: size,
                 margin: 2,
                 color: {
@@ -210,11 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const link = document.createElement('a');
             if (format === 'png') {
-                link.download = 'qrcode.png';
+                link.download = `qrcode_${Date.now()}.png`;
                 link.href = qrCanvas.toDataURL('image/png');
             } else if (format === 'jpg') {
-                link.download = 'qrcode.jpg';
-                link.href = qrCanvas.toDataURL('image/jpeg, 0.9');
+                link.download = `qrcode_${Date.now()}.jpg`;
+                link.href = qrCanvas.toDataURL('image/jpeg', 0.9);
             }
             link.click();
             console.log('Download as', format);
@@ -223,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (downloadPNG) downloadPNG.addEventListeners('click', () => downloadOR('png'));
-    if (downloadJPG) downloadJPG.addEventListeners('click', () => downloadOR('jpg'));
+    if (downloadPNG) downloadPNG.addEventListener('click', () => downloadQR('png'));
+    if (downloadJPG) downloadJPG.addEventListener('click', () => downloadQR('jpg'));
 
 });
 
