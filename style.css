@@ -95,3 +95,24 @@ button {
     cursor: pointer;  
     transition: transform 0.2s;
 }
+
+.logo-upload {
+    border: 2px dashed #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#logoPreview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#removeLogo {
+    width: auto;
+    background: #ff4444;
+    padding: 5px 15px;
+} 

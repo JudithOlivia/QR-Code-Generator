@@ -37,6 +37,20 @@
                 <option value="1024">Large (1024x1024)</option>
                 <option value="2048">Extra Large (2048x2048)</option>
             </select>
+
+            <label> Logo / Emoji </label>
+            <div class="logo-upload" id="logoUpload">
+                Click to Upload
+                <input type="file" id="logoFile" accept="image/*" style="display: none;">
+            </div>
+            <div id="logoPreview" style="display: none; margin-top: 10px;">
+                <img id="previewImg" style="max-width: 50px; max-height: 50px;">
+                <button type="button" id="removeLogo" style="width: auto; padding: 5px 10px; margin-left: 10px;">Remove</button>
+            </div>
+            <div style="margin-top: 10px;">
+                <label style="font-size: 14px;">Or use an emoji:</label>
+                <input type="text" id="emojiInput" placeholder="😊 🎨 🚀 ❤️ " maxlength="2" style="width: 100%; margin-top: 5px;">
+            </div>
         </div>
 
         <button id="generateBtn">Generate QR Code</button>
