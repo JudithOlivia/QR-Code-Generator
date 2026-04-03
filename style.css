@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6D2932 0%, #561C24 100%);
     min-height:100vh;
     display: flex;
     justify-content: center;
@@ -15,23 +15,23 @@ body {
 }
 
 .container {
-    background: white;
+    background: #C7B7A3;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     padding: 40px;
-    max-width: 600px;
+    max-width: 1000px;
     width: 100%;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #210100;
     margin-bottom: 30px;
 }
 
 .subtitle{
     text-align: center;
-    color: #666;
+    color: #6E473B;
     margin-bottom: 30px;
 }
 
@@ -49,7 +49,7 @@ label {
 textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #E8D8C4;
     border-radius: 10px;
     font-size: 16px;
     font-family: monospace;
@@ -59,7 +59,7 @@ textarea {
 
 textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #baa48a;
 }
 
 .color-group {
@@ -86,8 +86,8 @@ textarea:focus {
 button {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #6D2932 0%, #561C24 100%);
+    color: #F2E5C6;
     border: none;
     border-radius: 10px;
     font-size: 18px;
@@ -97,7 +97,7 @@ button {
 }
 
 .logo-upload {
-    border: 2px dashed #e0e0e0;
+    border: 2px dashed #F2E5C6;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -116,3 +116,12 @@ button {
     background: #ff4444;
     padding: 5px 15px;
 } 
+
+#qrContainer {
+    text-align: center;
+}
+
+#qrCanvas {
+    display: block;
+    margin: 0 auto;
+}

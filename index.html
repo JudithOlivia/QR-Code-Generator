@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,14 @@
 </head>
 
 <body>
-    <div class="container"
+    <div class="container">
         <h1>QR Code Generator</h1>
         <p class ="subtitle">Customize colors & add your logo or emoji</p>
 
         <div class="form-group">
             <label>Link or Text:</label>
-            <textarea id="qrText" placeholder="https://example.com or any text..."></textarea>
-            <div class="error" id="textError">Please enter a valid URL or text</div>
+            <textarea id="qrtext" placeholder="https://example.com or any text..."></textarea>
+            <div class="error" id="errorDiv">Please enter a valid URL or text</div>
         </div>
 
         <div class="color-group">
@@ -25,7 +25,7 @@
             </div>
             <div class="color-item">
                 <label> Background Color</label>
-                <input type="color" id="BgColor" value="#ffffff">
+                <input type="color" id="bgColor" value="#ffffff">
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             </div>
             <div id="logoPreview" style="display: none; margin-top: 10px;">
                 <img id="previewImg" style="max-width: 50px; max-height: 50px;">
-                <button type="button" id="removeLogo" style="width: auto; padding: 5px 10px; margin-left: 10px;">Remove</button>
+                <button type="button" id="removeLogoBtn" style="width: auto; padding: 5px 10px; margin-left: 10px;">Remove</button>
             </div>
             <div style="margin-top: 10px;">
                 <label style="font-size: 14px;">Or use an emoji:</label>
@@ -53,18 +53,21 @@
             </div>
         </div>
 
-        <button id="generateBtn">Generate QR Code</button>
+        <button id="generateBtn">Generate QR Code</button> 
 
         <div id="qrContainer" style="display: none;">
+            <br>
             <canvas id="qrCanvas"></canvas>
             <div style="margin-top: 15px; display: flex; gap: 10px; justify-content:center;">
-                <button id="downloadPNG" style="width: auto; background: #4CaF50"> Download PNG</button>
-                <button id="downloadJPG" style="width: auto; background: #4CaF50"> Download JPG</button>
+                <button id="downloadPNG" style="width: auto; background: #4CAF50"> Download PNG</button>
+                <button id="downloadJPG" style="width: auto; background: #4CAF50"> Download JPG
+                </button>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 
 </body>
+</html>
